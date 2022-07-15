@@ -4,7 +4,8 @@
     flex
     justify-between
     shadow bg-white
-    text-gray-700;
+    text-gray-700
+    relative;
 }
 
 .container {

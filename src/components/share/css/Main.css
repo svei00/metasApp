@@ -1,0 +1,24 @@
+.page {
+    /* height: calc(100vh - theme('height.sc')); // Another way to do this with pure CSS be careful to put before the @apply*/
+    @apply
+    h-[calc(100vh-theme('height.sc'))]
+    flex;    
+}
+
+.aside {
+    @apply
+    flex
+    flex-col
+    text-gray-700
+    bg-gray-100
+    shadow
+    w-60
+    h-full
+}
+
+.main {
+    @apply
+    w-full
+    h-full
+    overflow-scroll; /* Allow us to make a scroll if the content is bigger than the window */    
+}
