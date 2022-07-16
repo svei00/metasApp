@@ -4,7 +4,7 @@ import '../../share/css/Footer.css'
 function Footer() {
   return (
     <footer className="footer" > 
-        <p>Developt and Design by Iv&aacute;n Villanueva &copy; {getCurrentYear()} {/*{new Date().getFullYear()}*/} All rights Reserverd</p>
+        <p>Developt and Design by Iv&aacute;n E. Villanueva &copy; {getCurrentYear()} {/*{new Date().getFullYear()}*/} All rights Reserverd</p>
     </footer>
   );
 }
