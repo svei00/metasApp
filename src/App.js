@@ -2,14 +2,14 @@ import './App.css';
 import Header from './components/share/js/Header'
 import Main from './components/share/js/Main'
 import Footer from './components/share/js/Footer'
-import Goal from './components/share/list/Goals'
+import List from './components/share/list/List'
 
 function App() {
   return (
     <div className="App">
       <Header></Header>
       <Main>
-        <Goal></Goal>
+        <List></List>
       </Main>
       <Footer></Footer>      
     </div>

@@ -30,7 +30,7 @@ function Main({children}) {                                                     
               Icon={CreateIcon}
             />
           </aside>
-          <main className='main'>
+          <main className={styles.main}>
             {children}
           </main>
         </div>
