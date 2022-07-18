@@ -5,7 +5,8 @@
   text-gray-700
   text-xs
   mx-4
-  nm-flat-sky-100;
+  nm-flat-sky-100
+  overflow-hidden;
 }
 
 .button {                /* Global Class Primary */
@@ -27,12 +28,38 @@
 .button--red{
   @apply
   text-red-500
-  nm-flat-gray-100
-  border bg-red-700;
+  nm-flat-gray-200
+  border bg-red-700
+  hover:bg-red-200;
+}
+
+.button--green{
+  @apply
+  text-green-500
+  nm-flat-gray-200
+  border bg-green-700
+  hover:bg-green-200;
 }
 
 .button--gray {
   @apply
   nm-flat-gray-100
   hover:bg-gray-200;
+}
+
+.label {
+  @apply
+  block
+  capitalize
+  text-xs
+  font-bold
+  mb-6;
+}
+
+.input {
+  @apply
+  nm-inset-gray-100
+  w-full
+  border rounded-xl
+  p-2;
 }
