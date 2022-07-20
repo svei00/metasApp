@@ -20,12 +20,12 @@ function Main({children}) {                                                     
             </Links>
             */}
             <Links
-              href='/list'
+              to='/list'
               text="Goals List"
               Icon={ListIcon}
             />
             <Links
-              href='/create'
+              to='/create'
               text="New Goal"
               Icon={CreateIcon}
             />

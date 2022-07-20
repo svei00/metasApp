@@ -20,7 +20,7 @@ function Header() {
           </a>
         */}
             <Links
-              href='/profile'
+              to='/profile'
               Icon={ProfileIcon}
               />
         </nav>
