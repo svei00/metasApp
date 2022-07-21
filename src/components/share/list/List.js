@@ -1,6 +1,8 @@
-import Goal from './Goals'
+import { useContext } from 'react';
+import Goal from './Goals';
+import { Context } from '../../../services/Memory.js';
 
-/* Was:
+/* Was 1:
 const listMock = {
     "id": "1",
     "details": "Run for 30 minutes",
@@ -13,6 +15,7 @@ const listMock = {
 }; 
 */
 
+/* Was 2:
 const listMock = [
     {
         "id": "1",
@@ -46,11 +49,15 @@ const listMock = [
         "term": "2024-12-31",
         "complete": 40
 }]; 
+*/
 
 function List() {
+
+    const goals = useContext(Context);
+    console.log(goals);                             // To check if it works
     return (
         /* Was: Goal {...listMock}></Goal>  // Was this is called spread */ 
-        listMock.map(goal => <Goal {...goal}></Goal>)
+        goals.map(goal => <Goal key={goal.id} {...goal}></Goal>)         //Was: listMock.map(goal => <Goal key={goal.id} {...goal}></Goal>)
       );
 }
 
