@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext} from 'react';
+import { useNavigate } from 'react-router'; 
+import { Context } from '../../../services/Memory';
 import styles from "./Details.module.css";
 
 function Details() {
@@ -13,6 +15,8 @@ function Details() {
         complete: 4
     });
 
+    const [state, dispatch] = useContext(Context);
+
     const {details, events, term, icon, goal, when, complete} = form;         // Extract the data
 
     const onChange = (event, prop) => {                             // onChange event (This is very important)
@@ -24,13 +28,17 @@ function Details() {
         // console.log(form);    
     }, [form]);
 
+    const navigate = useNavigate();
+
     const create = async() => {
-        console.log(form);
+        console.log(form);                                              // Just to check if it works
+        dispatch({ type: 'create', goal: form });
+        navigate('/list');
     }
 
     const frequencyOptions = [
         {
-            "value": "dayly",
+            "value": "daily",
             "option": "per day"
         }, 
         {

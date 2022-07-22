@@ -53,11 +53,11 @@ const listMock = [
 
 function List() {
 
-    const goals = useContext(Context);
-    console.log(goals);                             // To check if it works
+    const [state, dispatch] = useContext(Context);                                  // Was: const goals = useContext(Context);
+    console.log(state.id);                                                             // To check if it works
     return (
         /* Was: Goal {...listMock}></Goal>  // Was this is called spread */ 
-        goals.map(goal => <Goal key={goal.id} {...goal}></Goal>)         //Was: listMock.map(goal => <Goal key={goal.id} {...goal}></Goal>)
+        state.order.map(id => <Goal key={id} {...state.objects[id]}></Goal>)         //Was: 1. listMock.map(goal => <Goal key={goal.id} {...goal}></Goal>) 2. goals.map(goal => <Goal key={goal.id} {...goal}></Goal>)
       );
 }
 
