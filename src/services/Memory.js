@@ -4,7 +4,7 @@ const listMock = [
     {
         "id": "1",
         "details": "Run for 30 minutes",
-        "frequency": "daily",
+        "frequency": "Daily",
         "events": 1,
         "icon": "🏃",
         "goal": 365,
@@ -52,7 +52,7 @@ function reducer(state, action) {
         };
 
         case 'create': {
-            const id = Math.random();                       // This is for backend: action.goal.id;
+            const id = Math.random();                                                   // This is for backend: action.goal.id;
             const newState = {
                 order: [... state.order, id],
                 objects: {
@@ -60,14 +60,14 @@ function reducer(state, action) {
                     [id]: action.goal
                 }
             };
-            console.log(newState);                          // To check if something funny happen
+            console.log(newState);                                                    // To check if something funny happen
             return newState;
         };
 
     }
 }
 
-console.log(reducer(initialState, {type: 'set', goals: listMock}))                          // This is for check if it works
+console.log(reducer(initialState, {type: 'set', goals: listMock}))                    // This is for check if it works
 const goals = reducer(initialState, {type: 'set', goals: listMock}); 
 
 export const Context = createContext(null);

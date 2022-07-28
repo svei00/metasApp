@@ -1,11 +1,12 @@
 import styles from "./Goals.module.css"
+import { Link } from 'react-router-dom';
 
 // Informatin like the database
 /* Was
 const goalMock = {
     "id": "1",
     "details": "Run for 30 minutes",
-    "frequency": "daily",
+    "frequency": "Daily",
     "events": 1,
     "icon": "🏃",
     "goal": 365,
@@ -14,13 +15,13 @@ const goalMock = {
 };
 */
 
-function Goal({icon, events, frequency, details, goal, complete }) {
+function Goal({id, icon, events, frequency, details, goal, complete }) {
 
     // Reestructuring the Meta
    /* Was: const {icon, events, frequency, details, goal, complete } = goalMock; */
 
     return ( 
-        <div className={styles.goal + ' card'}>
+        <Link to = {`/list/${id}`} className={styles.goal + ' card'}>                                     {/* Was: a div */}
             <div className="flex">
                 <div className={styles.icon}>{icon}</div>                           {/* &#127939; */}
                 <p className={styles.frequency}>{events} <sub>/ {frequency}</sub> </p>
@@ -37,7 +38,7 @@ function Goal({icon, events, frequency, details, goal, complete }) {
                 </div>
                 <button className="button button--gray">Complete!</button>
             </div>
-        </div>
+        </Link>
      );
 }
 

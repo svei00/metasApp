@@ -8,16 +8,16 @@ function Details() {
     const [form, setForm] = useState({                          // Creation of the hook
         details: '',
         events: 3,
-        term: 'a week',
+        frecuency: 'a week',
         icon: '📚',
         goal: 12,
-        when: '2022-12-31',
+        term: '2022-12-31',
         complete: 4
     });
 
     const [state, dispatch] = useContext(Context);
 
-    const {details, events, term, icon, goal, when, complete} = form;         // Extract the data
+    const {details, events, frecuency, icon, goal, term, complete} = form;         // Extract the data
 
     const onChange = (event, prop) => {                             // onChange event (This is very important)
         setForm(state => ({ ...state, [prop]: event.target.value }));
@@ -36,7 +36,9 @@ function Details() {
         navigate('/list');
     }
 
-    const frequencyOptions = [
+    const frecuencietls = ['per day', 'a week', 'a month', 'a year'];   // Just an alternatuve to see what happened
+
+    let frequencies = [
         {
             "value": "daily",
             "option": "per day"
@@ -63,7 +65,7 @@ function Details() {
                 <label className="label">Describe your Goal:
                     <input 
                         className="input" 
-                        placeholder="Ex. Take a w alk once a week"
+                        placeholder="Ex. Take a walk once a week"
                         value={details}
                         onChange = {e => onChange(e, 'details')}
                     />
@@ -77,7 +79,7 @@ function Details() {
                             onChange = {e => onChange(e, 'events')}
                         />
                         {/* One Way
-                        <select>
+                        <select className="input">
                             <option value="daily">per day</option>
                             <option value="weekly">a week</option>
                             <option value="monthly">a moth</option>
@@ -86,9 +88,12 @@ function Details() {
                         */}
                         <select 
                             className="input"
-                            value={term}
+                            value={frecuency}
+                            onChange = {e => onChange(e, 'frecuency')} 
                         >
-                            {frequencyOptions.map(option => <option value={option.value}>{option.option}</option>)}
+                            {frequencies.map(op => <option value={op.value}>{op.option}</option>)}
+                            {/*{frecuencietls.map(op => <option value ={op}>{op}</option>)}*/}
+                            
                         </select>
                     </div>
                 </label>
@@ -104,8 +109,8 @@ function Details() {
                     <input 
                         className="input" 
                         type='date'
-                        value={when}
-                        onChange = {e => onChange(e, 'when')}    
+                        value={term}
+                        onChange = {e => onChange(e, 'term')}    
                     /></label>
                 <label className="label">How many times have you complethed this?
                     <input 

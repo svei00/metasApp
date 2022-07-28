@@ -9,6 +9,7 @@ import Footer from './components/share/js/Footer'
 import List from './components/share/list/List'
 import Details from './components/share/create/Details';
 import NotFound from './components/share/js/notFound';
+import Modal from './components/share/js/Modal';
 
 
 function App() {
@@ -16,7 +17,9 @@ function App() {
     <Routes>
       <Route path='/' element={<Layout />} >
         <Route index element={<NotFound />} />
-        <Route path='/list' element={<List />} />
+        <Route path='/list' element={<List />}>
+          <Route path='/list/:id' element={<Modal />}/>      {/*: Tells React that the contect is dinamyc */}  
+        </Route>
         <Route path='/create' element={<Details />} />
       </Route>
       <Route path="*" element={<NotFound />} />

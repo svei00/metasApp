@@ -1,12 +1,13 @@
 import { useContext } from 'react';
 import Goal from './Goals';
+import { Outlet } from 'react-router';
 import { Context } from '../../../services/Memory.js';
 
 /* Was 1:
 const listMock = {
     "id": "1",
     "details": "Run for 30 minutes",
-    "frequency": "daily",
+    "frequency": "Daily",
     "events": 1,
     "icon": "🏃",
     "goal": 365,
@@ -56,9 +57,12 @@ function List() {
     const [state, dispatch] = useContext(Context);                                  // Was: const goals = useContext(Context);
     console.log(state.id);                                                             // To check if it works
     return (
-        /* Was: Goal {...listMock}></Goal>  // Was this is called spread */ 
-        state.order.map(id => <Goal key={id} {...state.objects[id]}></Goal>)         //Was: 1. listMock.map(goal => <Goal key={goal.id} {...goal}></Goal>) 2. goals.map(goal => <Goal key={goal.id} {...goal}></Goal>)
-      );
+        <>
+            {/* Was: Goal {...listMock}></Goal>  // Was this is called spread */} 
+            {state.order.map(id => <Goal key={id} {...state.objects[id]}></Goal>)}         {/*Was: 1. listMock.map(goal => <Goal key={goal.id} {...goal}></Goal>) 2. goals.map(goal => <Goal key={goal.id} {...goal}></Goal>)*/}
+            <Outlet/>
+        </>
+    );
 }
 
 export default List;
