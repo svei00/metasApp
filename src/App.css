@@ -41,6 +41,14 @@
   hover:bg-green-200;
 }
 
+.button--blue {
+  @apply
+  text-blue-400
+  nm-flat-gray-200
+  border bg-blue-900
+  hover:bg-blue-200
+}
+
 .button--gray {
   @apply
   nm-flat-gray-100

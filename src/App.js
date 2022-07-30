@@ -18,7 +18,11 @@ function App() {
       <Route path='/' element={<Layout />} >
         <Route index element={<NotFound />} />
         <Route path='/list' element={<List />}>
-          <Route path='/list/:id' element={<Modal />}/>      {/*: Tells React that the contect is dinamyc */}  
+          <Route path='/list/:id' element={
+            <Modal>
+              <Details />
+          </Modal >    
+          }/>      {/*: Tells React that the contect is dinamyc */}  
         </Route>
         <Route path='/create' element={<Details />} />
       </Route>

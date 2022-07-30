@@ -1,10 +1,12 @@
 import { useEffect, useState, useContext} from 'react';
-import { useNavigate } from 'react-router'; 
+import { useNavigate, useParams } from 'react-router'; 
 import { Context } from '../../../services/Memory';
 import styles from "./Details.module.css";
 
 function Details() {
 
+    const { id } = useParams();                                 // We use this line of code in useEffect
+ 
     const [form, setForm] = useState({                          // Creation of the hook
         details: '',
         events: 3,
@@ -24,15 +26,37 @@ function Details() {
         console.log(form);
     }
 
-    useEffect(() => {
-        // console.log(form);    
-    }, [form]);
+    useEffect(() => {                                                  // Now it wors with useParams so when chance the id it changes the whole content
+        // console.log(form);
+        const isMemory = state.objects[id];                             // Error handler, if id is in memory...
+        
+        if(!id) return;                                                 // We use this line of code to difference between create and update
+        if (!isMemory) {
+            return navigate('/404');                                    // Otherwise
+        }
+
+        setForm(state.objects[id]);    
+    }, [id]);                                                          // Was [form]; and abobe wasn't setForm...
 
     const navigate = useNavigate();
 
     const create = async() => {
         console.log(form);                                              // Just to check if it works
         dispatch({ type: 'create', goal: form });
+        navigate('/list');
+    }
+
+    const update = async () => {
+        dispatch({ type: 'update', goal: form});
+        navigate('/list');
+    }
+
+    const del = async () => {                                           // It is not necesary to add async
+        dispatch({ type: 'del', id })
+        navigate('/list');
+    }
+
+    const cancel = () => {
         navigate('/list');
     }
 
@@ -131,13 +155,33 @@ function Details() {
                 </label>
             </form>
             <div className={styles.buttons}>
-                <button 
+                {!id && <button                         // We use !id to determine which button to show 
                     className="button button--green"
                     onClick={create}
                 >
                     Create
+                </button>}
+                
+                {id && <button                          // We use id to determine if show update or create button
+                    className='button button--blue'
+                    onClick={update}
+                >
+                    Update
+                </button>}
+
+                {id && <button                          // Same as Update
+                    className='button button--red'
+                    onClick={del}
+                >
+                    Delete                    
+                </button>}
+
+                <button 
+                    className="button button--gray"
+                    onClick={cancel}
+                >
+                    Cancel
                 </button>
-                <button className="button button--red">Cancel</button>
             </div>
         </div>
       );
