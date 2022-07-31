@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 
-const listMock = [
+const listMock = [                              // After the localStorage we do not need this anymore
     {
         "id": "1",
         "details": "Run for 30 minutes",
@@ -34,10 +34,21 @@ const listMock = [
         "complete": 40
 }]; 
 
+/* Was
 const initialState = {
     order: [],
     objects: {}
 };
+*/
+
+// Lines added in order to use localStorage
+const memory = localStorage.getItem('goals');
+const initialState = memory
+    ? JSON.parse(memory)
+    : {
+        order: [],
+        objects: {}
+    };
 
 function reducer(state, action) {
     switch (action.type) {
@@ -47,12 +58,13 @@ function reducer(state, action) {
                 order: goals.map(goal => goal.id),
                 objects: goals.reduce((object, goal) => ({...object, [goal.id]: goal}), {})
             };
-
+            // This line was added in order to local storage works. I added the same line of code on all CRUD operatins
+            localStorage.setItem('goals', JSON.stringify(newState))    
             return newState;
         };
 
         case 'create': {
-            const id = Math.random();                                                   // This is for backend: action.goal.id;
+            const id = String(Math.floor(Math.random() * 100));                                                   // This is for backend: action.goal.id;
             const newState = {
                 order: [... state.order, id],
                 objects: {
@@ -61,6 +73,7 @@ function reducer(state, action) {
                 }
             };
             console.log(newState);                                                    // To check if something funny happen
+            localStorage.setItem('goals', JSON.stringify(newState))
             return newState;
         };
 
@@ -71,6 +84,7 @@ function reducer(state, action) {
                 ...action.goal
             };
             const newState = { ...state };
+            localStorage.setItem('goals', JSON.stringify(newState))
             return newState;
         };
 
@@ -83,19 +97,20 @@ function reducer(state, action) {
                 order: newOrder,
                 objects: state.objects
             };
+            localStorage.setItem('goals', JSON.stringify(newState))
             return newState;
         };
     }
 }
 
-console.log(reducer(initialState, {type: 'set', goals: listMock}))                    // This is for check if it works
-const goals = reducer(initialState, {type: 'set', goals: listMock}); 
+console.log(reducer(initialState, {type: 'set', goals: listMock}))                      // This is for check if it works
+// const goals = reducer(initialState, {type: 'set', goals: listMock});                 // We commenented this because changed line 113 from goal to initial state
 
 export const Context = createContext(null);
 
 function Memory({ children }) {
 
-   const [state, dispatch] = useReducer(reducer, goals)                              // Was: initialState instead of goals
+   const [state, dispatch] = useReducer(reducer, initialState)                         // Was1: initialState instead of goals  Was2: const [state, dispatch] = useReducer(reducer, goals)  
    return ( 
         <Context.Provider value={[state, dispatch]}>
             {children}

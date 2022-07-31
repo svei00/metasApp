@@ -115,7 +115,7 @@ function Details() {
                             value={frecuency}
                             onChange = {e => onChange(e, 'frecuency')} 
                         >
-                            {frequencies.map(op => <option value={op.value}>{op.option}</option>)}
+                            {frequencies.map(op => <option key={op} value={op.value}>{op.option}</option>)}
                             {/*{frecuencietls.map(op => <option value ={op}>{op}</option>)}*/}
                             
                         </select>
@@ -150,7 +150,7 @@ function Details() {
                         value={icon}
                         onChange = {e => onChange(e, 'icon')}
                     >
-                        {icons.map(option => <option value={option}>{option}</option>)}
+                        {icons.map(option => <option key={option} value={option}>{option}</option>)}
                     </select>
                 </label>
             </form>
