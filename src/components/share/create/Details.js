@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext} from 'react';
 import { useNavigate, useParams } from 'react-router'; 
 import { Context } from '../../../services/Memory';
+import { updateGoal } from '../../../services/Queries';
 import styles from "./Details.module.css";
 
 function Details() {
@@ -41,18 +42,21 @@ function Details() {
     const navigate = useNavigate();
 
     const create = async() => {
-        console.log(form);                                              // Just to check if it works
-        dispatch({ type: 'create', goal: form });
+        console.log(form);                                              // Just to check if it works. Not necesary
+        //const newGoal = await createGoal(form);                       // 08/21 uncommnet when re do last react chapter
+        //dispatch({ type: 'create', goal: newGoal });                  // 08/21 uncomment
         navigate('/list');
     }
 
     const update = async () => {
-        dispatch({ type: 'update', goal: form});
+        //const goalUpdated = await updateGoal(form);
+        //dispatch({ type: 'update', goal: goalUpdated});
         navigate('/list');
     }
 
     const del = async () => {                                           // It is not necesary to add async
-        dispatch({ type: 'del', id })
+        // await delGoal(form.id);
+        // dispatch({ type: 'del', id: form.id});
         navigate('/list');
     }
 
