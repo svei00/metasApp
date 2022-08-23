@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 
-const listMock = [                              // After the localStorage we do not need this anymore
+/* const listMock = [                               // After the localStorage we do not need this anymore
     {
         "id": "1",
         "details": "Run for 30 minutes",
@@ -33,6 +33,7 @@ const listMock = [                              // After the localStorage we do 
         "term": "2024-12-31",
         "complete": 40
 }]; 
+*/
 
 /* Was
 const initialState = {
@@ -42,13 +43,20 @@ const initialState = {
 */
 
 // Lines added in order to use localStorage
-const memory = localStorage.getItem('goals');
-const initialState = memory
+// const memory = localStorage.getItem('goals');        // Comment since we don't need because is localStorage
+const initialState = {
+    order: [],
+    objects: {}
+};
+    
+    /* Comes from localStorage
+    const initialState = memory 
     ? JSON.parse(memory)
     : {
         order: [],
         objects: {}
     };
+    */
 
 function reducer(state, action) {
     switch (action.type) {
@@ -59,12 +67,12 @@ function reducer(state, action) {
                 objects: goals.reduce((object, goal) => ({...object, [goal.id]: goal}), {})
             };
             // This line was added in order to local storage works. I added the same line of code on all CRUD operatins
-            localStorage.setItem('goals', JSON.stringify(newState))    
+            // localStorage.setItem('goals', JSON.stringify(newState)) // We commented the localStorage because it isn't anymore our data source   
             return newState;
         };
 
         case 'create': {
-            const id = String(Math.floor(Math.random() * 100));                                                   // This is for backend: action.goal.id;
+            const id = action.goal.id;                                                  // This is for backend: action.goal.id; // This is for test String(Math.floor(Math.random() * 100)); 
             const newState = {
                 order: [... state.order, id],
                 objects: {
@@ -73,7 +81,7 @@ function reducer(state, action) {
                 }
             };
             console.log(newState);                                                    // To check if something funny happen
-            localStorage.setItem('goals', JSON.stringify(newState))
+            // localStorage.setItem('goals', JSON.stringify(newState))
             return newState;
         };
 
@@ -84,7 +92,7 @@ function reducer(state, action) {
                 ...action.goal
             };
             const newState = { ...state };
-            localStorage.setItem('goals', JSON.stringify(newState))
+            // localStorage.setItem('goals', JSON.stringify(newState))
             return newState;
         };
 
@@ -97,13 +105,13 @@ function reducer(state, action) {
                 order: newOrder,
                 objects: state.objects
             };
-            localStorage.setItem('goals', JSON.stringify(newState))
+            // localStorage.setItem('goals', JSON.stringify(newState))
             return newState;
         };
     }
 }
 
-console.log(reducer(initialState, {type: 'set', goals: listMock}))                      // This is for check if it works
+// console.log(reducer(initialState, {type: 'set', goals: listMock}))                   // This is for check if it works but need to uncomment the listMock
 // const goals = reducer(initialState, {type: 'set', goals: listMock});                 // We commenented this because changed line 113 from goal to initial state
 
 export const Context = createContext(null);

@@ -1,0 +1,10 @@
+{
+    "id": "2",
+    "details": "This is a test",
+    "frequency": "Montly",
+    "events": 7,
+    "icon": "📚",
+    "goal": 12,
+    "term": "2023-07-25",
+    "complete": 1
+}

@@ -1,6 +1,7 @@
 // Get all goals
 export async function getGoals() {
-    const response = await fetch('api/goals');
+    // const response = await fetch('api/goals');
+    const response = await fetch('/goals.json');
     const goals = await response.json();
     return goals;
 }
@@ -13,6 +14,13 @@ export async function getGoals() {
 }*/
 
 // Create a Goal
+export async function createGoal() {
+    const response = await fetch('/goal.json') 
+    const goalCreated = await response.json();
+        console.log('Goal has been created!', goalCreated)
+        return goalCreated;
+    };
+/*
 export async function createGoal(goal) {
     const response = await fetch('api/goals', {
         method: 'POST',
@@ -25,8 +33,17 @@ export async function createGoal(goal) {
     console.log('Goal has been created!', goalCreated)
     return goalCreated;
 }
+*/
 
 // Update Goal
+export async function updateGoal() {
+    const response = await fetch('/goal.json'); 
+    const goalUpdated = await response.json();
+    console.log('Goal has been updated!', goalUpdated)
+    return goalUpdated;
+}
+
+/*
 export async function updateGoal(goal) {
     const response = await fetch(`/api/goals/${goal.id}`, {
         method: 'PUT',
@@ -39,11 +56,19 @@ export async function updateGoal(goal) {
     console.log('Goal has been updated!!', goalUpdated)
     return goalUpdated;
 }
+*/
 
 // Delete Goal
-export async function delGoal(id) {
+export async function delGoal() {
+    const response = await fetch('/goal.json');
+    const goalDeleted = await response.json(); 
+    console.log('Goal has been deleted!', goalDeleted.id)
+    return goalDeleted.id;
+
+/*
     await fetch(`/api/goals${id}`, {
         method: 'DELETE'
     });
     console.log('Goal has been Deleted!!', id)
+/*/
 }

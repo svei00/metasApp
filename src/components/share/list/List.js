@@ -1,7 +1,8 @@
-import { useContext } from 'react';
+import { useContext, /* useEffect */  } from 'react';               // Was2 useEffect
 import Goal from './Goals';
 import { Outlet } from 'react-router';
 import { Context } from '../../../services/Memory.js';
+// import { getGoals } from '../../../services/Queries';            // Was2
 
 /* Was 1:
 const listMock = {
@@ -54,7 +55,17 @@ const listMock = [
 
 function List() {
 
-    const [state, dispatch] = useContext(Context);                                  // Was: const goals = useContext(Context);
+    const [state] = useContext(Context);                                               // Was1: const goals = useContext(Context); Was2: const [state, dispatch] = useContext(Context);   
+   
+    /* Was1:  moved to App.js
+    useEffect(() => {
+        (async () => {
+            const goals = await getGoals();
+            dispatch({ type: 'set', goals });        
+        })();
+    },[]);
+    */
+    
     console.log(state.id);                                                             // To check if it works
     return (
         <>
