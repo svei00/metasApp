@@ -43,20 +43,21 @@ function Details() {
 
     const create = async() => {
         console.log(form);                                              // Just to check if it works. Not necesary
-        const newGoal = await createGoal();                             // 08/21 uncommnet when re do last react chapter
-        dispatch({ type: 'create', goal: newGoal });                    // 08/21 uncomment
+        const newGoal = await createGoal(form);                         // Was. Before connect db: const newGoal = await createGoal();     
+        dispatch({ type: 'create', goal: newGoal });                     
         navigate('/list');
     }
 
     const update = async () => {
-        const goalUpdated = await updateGoal();
+        const goalUpdated = await updateGoal(form);                       // Was. Before connect db: const goalUpdated = await updateGoal(); 
         dispatch({ type: 'update', goal: goalUpdated});
         navigate('/list');
     }
 
     const del = async () => {                                           // It is not necesary to add async
-        const goalDeleted = await delGoal();
-        dispatch({ type: 'del', id: goalDeleted});
+        // const goalDeleted = await delGoal();                         // Was. Before connect db.
+        await delGoal(form.id);
+        dispatch({ type: 'del', id: form.id});                          // Was. Before connect db: dispatch({ type: 'del', id: goalDeleted});  
         navigate('/list');
     }
 
@@ -85,7 +86,7 @@ function Details() {
         }
     ];
 
-    let icons= ["💻", "🏃‍♂️", "📚", "✈️", "🏞️", "💵"]; //["U+1F4BB", "U+1F3C3", "U+1F4DA", "U+2708", "U+1F3DE", "U+1F4B5"];
+    let icons= ["💻", "🏃‍♂️", "📚", "✈️", "🏞️", "💵", "🚲"]; //["U+1F4BB", "U+1F3C3", "U+1F4DA", "U+2708", "U+1F3DE", "U+1F4B5", "U+1F6B2"];
 
     return (
         <div className="card">
