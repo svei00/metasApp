@@ -1,14 +1,21 @@
-import Links from './Links'
-import styles from '../../share/css/Main.module.css'                           // Was Global: import '../../share/css/Main.css'import {ReactComponent as ListIcon} from '../../../img/lista.svg';
-import {ReactComponent as ListIcon} from '../../../img/lista.svg';
-import {ReactComponent as CreateIcon} from '../../../img/nueva.svg';
+import Links from "./Links";
+import styles from "../../share/css/Main.module.css"; // Was Global: import '../../share/css/Main.css'import {ReactComponent as ListIcon} from '../../../img/lista.svg';
+import { ReactComponent as ListIcon } from "../../../img/lista.svg";
+import { ReactComponent as CreateIcon } from "../../../img/nueva.svg";
 
-function Main({children}) {                                                     // In this case the children its the props (Property)
-    return (
-      <>                                                                       {/*// This is a Fragment in React we have to encapsule all in a tag*/}
-        <div className={styles.page}>                                          {/*// Was: className='page'  */}
-          <aside className={styles.aside}>                                     {/*// Was: className='aside'*/} 
-            {/* Was"
+function Main({ children }) {
+  // In this case the children its the props (Property)
+  return (
+    <>
+      {" "}
+      {/*// This is a Fragment in React we have to encapsule all in a tag*/}
+      <div className={styles.page}>
+        {" "}
+        {/*// Was: className='page'  */}
+        <aside className={styles.aside}>
+          {" "}
+          {/*// Was: className='aside'*/}
+          {/* Was"
             <a href='/list'>List</a>
             <a href="/create">Create</a>
             
@@ -19,23 +26,13 @@ function Main({children}) {                                                     
               <CreateIcon className='icon' />
             </Links>
             */}
-            <Links
-              to='/list'
-              text="Goals List"
-              Icon={ListIcon}
-            />
-            <Links
-              to='/create'
-              text="New Goal"
-              Icon={CreateIcon}
-            />
-          </aside>
-          <main className={styles.main}>
-            {children}
-          </main>
-        </div>
-      </>
-    );
-  }
-  
-  export default Main;
+          <Links to="/list" text="Goals List" Icon={ListIcon} />
+          <Links to="/create" text="New Goal" Icon={CreateIcon} />
+        </aside>
+        <main className={styles.main}>{children}</main>
+      </div>
+    </>
+  );
+}
+
+export default Main;

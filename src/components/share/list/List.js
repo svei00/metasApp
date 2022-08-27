@@ -1,7 +1,7 @@
-import { useContext, /* useEffect */  } from 'react';               // Was2 useEffect
-import Goal from './Goals';
-import { Outlet } from 'react-router';
-import { Context } from '../../../services/Memory.js';
+import { useContext /* useEffect */ } from "react"; // Was2 useEffect
+import Goal from "./Goals";
+import { Outlet } from "react-router";
+import { Context } from "../../../services/Memory.js";
 // import { getGoals } from '../../../services/Queries';            // Was2
 
 /* Was 1:
@@ -54,10 +54,9 @@ const listMock = [
 */
 
 function List() {
+  const [state] = useContext(Context); // Was1: const goals = useContext(Context); Was2: const [state, dispatch] = useContext(Context);
 
-    const [state] = useContext(Context);                                               // Was1: const goals = useContext(Context); Was2: const [state, dispatch] = useContext(Context);   
-   
-    /* Was1:  moved to App.js
+  /* Was1:  moved to App.js
     useEffect(() => {
         (async () => {
             const goals = await getGoals();
@@ -65,15 +64,18 @@ function List() {
         })();
     },[]);
     */
-    
-    console.log(state.id);                                                             // To check if it works
-    return (
-        <>
-            {/* Was: Goal {...listMock}></Goal>  // Was this is called spread */} 
-            {state.order.map(id => <Goal key={id} {...state.objects[id]}></Goal>)}         {/*Was: 1. listMock.map(goal => <Goal key={goal.id} {...goal}></Goal>) 2. goals.map(goal => <Goal key={goal.id} {...goal}></Goal>)*/}
-            <Outlet/>
-        </>
-    );
+
+  console.log(state.id); // To check if it works
+  return (
+    <>
+      {/* Was: Goal {...listMock}></Goal>  // Was this is called spread */}
+      {state.order.map((id) => (
+        <Goal key={id} {...state.objects[id]}></Goal>
+      ))}{" "}
+      {/*Was: 1. listMock.map(goal => <Goal key={goal.id} {...goal}></Goal>) 2. goals.map(goal => <Goal key={goal.id} {...goal}></Goal>)*/}
+      <Outlet />
+    </>
+  );
 }
 
 export default List;

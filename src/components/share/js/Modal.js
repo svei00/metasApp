@@ -4,18 +4,22 @@
 // import { Context } from '../../../services/Memory';
 // import Details from '../create/Details';
 
-function Modal( { children } ) {
-    // const { id } = useParams();
-    // const [state, send] = useContext(Context);
-    return ( 
-        <div className='flex items-center fixed inset-0 bg-gray-700 bg-opacity-75'>           {/* Uses Tailwind to stylish the Modal (Pop-up) Was: className='fixed inset-0 bg-gray-700 bg-opacity-75'*/}
-            {/* { JSON.stringify(state.objects[id]) }                                           // Was: { id } Now we use JSON because React cannot convert objects*/}
-            <div className='mx-auto'>                                                           {/* Centers vertically and flex items-center did horizontally */}   
-                {/* <Details></Details> */}
-    { children }                                                                                {/* To make it generic */}
-            </div>
-        </div>
-     );
+function Modal({ children }) {
+  // const { id } = useParams();
+  // const [state, send] = useContext(Context);
+  return (
+    <div className="flex items-center fixed inset-0 bg-gray-700 bg-opacity-75">
+      {" "}
+      {/* Uses Tailwind to stylish the Modal (Pop-up) Was: className='fixed inset-0 bg-gray-700 bg-opacity-75'*/}
+      {/* { JSON.stringify(state.objects[id]) }                                           // Was: { id } Now we use JSON because React cannot convert objects*/}
+      <div className="mx-auto">
+        {" "}
+        {/* Centers vertically and flex items-center did horizontally */}
+        {/* <Details></Details> */}
+        {children} {/* To make it generic */}
+      </div>
+    </div>
+  );
 }
 
 export default Modal;
