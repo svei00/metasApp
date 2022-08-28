@@ -15,7 +15,18 @@ const goalMock = {
 };
 */
 
-function Goal({ id, icon, events, frequency, details, goal, complete }) {
+// Use TypeScript in order to make sure that we pass the correct data type
+interface GoalProps {
+  id: number;
+  icon: string;
+  events: number;
+  frequency: number;
+  details: string;
+  goal: number;
+  complete: number;
+}
+
+function Goal({ id, icon, events, frequency, details, goal, complete }: GoalProps) {      // Was: function Goal({ id, icon, events, frequency, details, goal, complete }) {
   // Reestructuring the Meta
   /* Was: const {icon, events, frequency, details, goal, complete } = goalMock; */
 

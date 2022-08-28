@@ -3,7 +3,11 @@ import styles from "../../share/css/Main.module.css"; // Was Global: import '../
 import { ReactComponent as ListIcon } from "../../../img/lista.svg";
 import { ReactComponent as CreateIcon } from "../../../img/nueva.svg";
 
-function Main({ children }) {
+interface MainProps {
+  children: React.ReactNode;
+}
+
+function Main({ children }: MainProps) {                                  // Was: function Main({ children }) {
   // In this case the children its the props (Property)
   return (
     <>

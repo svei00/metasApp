@@ -4,7 +4,13 @@
 // import { Context } from '../../../services/Memory';
 // import Details from '../create/Details';
 
-function Modal({ children }) {
+// Adding TypeScript to get the correct data type.
+
+interface ModalProps {
+  children: React.ReactNode;
+}
+
+function Modal({ children }: ModalProps) {                                                // Was: function Modal({ children }) {
   // const { id } = useParams();
   // const [state, send] = useContext(Context);
   return (
