@@ -1,5 +1,6 @@
 import styles from "./Goals.module.css";
 import { Link } from "react-router-dom";
+import { GoalType } from '../../../types/GoalType';
 
 // Informatin like the database
 /* Was
@@ -16,15 +17,7 @@ const goalMock = {
 */
 
 // Use TypeScript in order to make sure that we pass the correct data type
-interface GoalProps {
-  id: number;
-  icon: string;
-  events: number;
-  frequency: number;
-  details: string;
-  goal: number;
-  complete: number;
-}
+interface GoalProps extends GoalType {}
 
 function Goal({ id, icon, events, frequency, details, goal, complete }: GoalProps) {      // Was: function Goal({ id, icon, events, frequency, details, goal, complete }) {
   // Reestructuring the Meta

@@ -1,15 +1,17 @@
+import { GoalType } from "../types/GoalType";
+
 // Get all goals
-export async function getGoals() {
+export async function getGoals() : Promise<GoalType[]> {              // We use Promise because is an async function so thats why we put between <> and add the square braces at the final of GoalType
   const response = await fetch("api/goals");
   // const response = await fetch('/goals.json');                     // Was. We use this to simulate the web api
-  const goals = await response.json();
+  const goals: GoalType[] = await response.json();                    // With that we have converted our function in a Typed function
   return goals;
 }
 
 // Get one goal by id
-export async function getGoal(id) {
+export async function getGoal(id: number) : Promise<GoalType> {       // We do the same with the exception we're taking of the square bracets []
   const response = await fetch(`api/goals${id}`);
-  const goal = await response.json();
+  const goal: GoalType = await response.json();
   return goal;
 }
 
@@ -23,7 +25,7 @@ export async function createGoal() {
     };
 */
 
-export async function createGoal(goal) {
+export async function createGoal(goal: GoalType) : Promise<GoalType> {  // And so on...
   const response = await fetch("/api/goals", {
     method: "POST",
     body: JSON.stringify(goal),
@@ -31,7 +33,7 @@ export async function createGoal(goal) {
       "content-type": "application/json; charset=UTF-8",
     },
   });
-  const goalCreated = await response.json();
+  const goalCreated: GoalType = await response.json();
   console.log("Goal has been created!", goalCreated);
   return goalCreated;
 }
@@ -46,7 +48,7 @@ export async function updateGoal() {
 }
 */
 
-export async function updateGoal(goal) {
+export async function updateGoal(goal: GoalType) : Promise<GoalType> {
   const response = await fetch(`/api/goals/${goal.id}`, {
     method: "PUT",
     body: JSON.stringify(goal),
@@ -54,7 +56,7 @@ export async function updateGoal(goal) {
       "content-type": "application/json; charset=UTF-8",
     },
   });
-  const goalUpdated = await response.json();
+  const goalUpdated: GoalType = await response.json();
   console.log("Goal has been updated!!", goalUpdated);
   return goalUpdated;
 }
@@ -68,7 +70,7 @@ export async function delGoal() {
     return goalDeleted.id;
 */
 
-export async function delGoal(id) {
+export async function delGoal(id: number): Promise<void> {
   await fetch(`/api/goals${id}`, {
     method: "DELETE",
   });

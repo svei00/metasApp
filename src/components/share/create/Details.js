@@ -59,8 +59,9 @@ function Details() {
   const del = async () => {
     // It is not necesary to add async
     // const goalDeleted = await delGoal();                         // Was. Before connect db.
-    await delGoal(form.id);
-    dispatch({ type: "del", id: form.id }); // Was. Before connect db: dispatch({ type: 'del', id: goalDeleted});
+    const id =  form.id;
+    await delGoal(id);                                              // Was. await delGoal(form.id);
+    dispatch({ type: "del", id }); // Was. Before connect db: dispatch({ type: 'del', id: goalDeleted}); //Was2: dispatch({ type: "del", id: form.id })
     navigate("/list");
   };
 
