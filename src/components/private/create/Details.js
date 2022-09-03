@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router";
-import { Context } from "../../../services/Memory";
+import { GoalsContext } from "../../../memory/GoalsMemory";
 import { createGoal, updateGoal, delGoal } from "../../../services/Queries";
 import styles from "./Details.module.css";
 
@@ -18,7 +18,7 @@ function Details() {
     complete: 4,
   });
 
-  const [state, dispatch] = useContext(Context);
+  const [state, dispatch] = useContext(GoalsContext);
 
   const { details, events, frecuency, icon, goal, term, complete } = form; // Extract the data
 

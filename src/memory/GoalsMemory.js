@@ -117,6 +117,9 @@ function reducer(state, action) {
 // console.log(reducer(initialState, {type: 'set', goals: listMock}))                   // This is for check if it works but need to uncomment the listMock
 // const goals = reducer(initialState, {type: 'set', goals: listMock});                 // We commenented this because changed line 113 from goal to initial state
 
+/*
+
+Was before the login/signup changes:
 export const Context = createContext(null);
 
 function Memory({ children }) {
@@ -126,4 +129,17 @@ function Memory({ children }) {
   );
 }
 
-export default Memory;
+export default Memory
+
+*/
+
+export const GoalsContext = createContext(null);
+
+function GoalsMemory({ children }) {
+  const value = useReducer(reducer, initialState); // Was1: initialState instead of goals  Was2: const [state, dispatch] = useReducer(reducer, goals)
+  return (
+    <GoalsContext.Provider value={value}>{children}</GoalsContext.Provider>
+  );
+}
+
+export default GoalsMemory;

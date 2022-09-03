@@ -11,14 +11,14 @@ import List from "./components/private/list/List";
 import Details from "./components/private/create/Details";
 import NotFound from "./components/share/js/notFound";
 import Modal from "./components/share/js/Modal";
-import { Context } from "./services/Memory";
+import { GoalsContext } from "./memory/GoalsMemory";
 import { getGoals } from "./services/Queries";
 import Signup from "./components/public/signup/signup";
 import Signin from "./components/public/signin/signin";
 import { Login } from "./components/share/js/Login";
 
 function App() {
-  const [, dispatch] = useContext(Context); // Was: const goals = useContext(Context); // remember we remove state but conserve the ,
+  const [, dispatch] = useContext(GoalsContext); // Was: const goals = useContext(Context); // remember we remove state but conserve the ,
 
   useEffect(() => {
     (async () => {

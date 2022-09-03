@@ -1,7 +1,7 @@
 import { useContext /* useEffect */ } from "react"; // Was2 useEffect
 import Goal from "./Goals";
 import { Outlet } from "react-router";
-import { Context } from "../../../services/Memory.js";
+import { GoalsContext } from "../../../memory/GoalsMemory.js";
 // import { getGoals } from '../../../services/Queries';            // Was2
 
 /* Was 1:
@@ -54,7 +54,7 @@ const listMock = [
 */
 
 function List() {
-  const [state] = useContext(Context); // Was1: const goals = useContext(Context); Was2: const [state, dispatch] = useContext(Context);
+  const [state] = useContext(GoalsContext); // Was1: const goals = useContext(Context); Was2: const [state, dispatch] = useContext(Context);
 
   /* Was1:  moved to App.js
     useEffect(() => {
