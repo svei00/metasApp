@@ -1,3 +1,4 @@
+
 import Links from "./Links";
 import styles from "../../share/css/Main.module.css"; // Was Global: import '../../share/css/Main.css'import {ReactComponent as ListIcon} from '../../../img/lista.svg';
 import { ReactComponent as ListIcon } from "../../../img/lista.svg";
@@ -40,3 +41,4 @@ function Main({ children }: MainProps) {                                  // Was
 }
 
 export default Main;
+/* We don use anymore the Main. I just kept it just for practice or understanding */

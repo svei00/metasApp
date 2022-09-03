@@ -1,0 +1,6 @@
+.main {
+  @apply
+  w-full
+  h-full
+  overflow-scroll; /* Allow us to make a scroll if the content is bigger than the window */    
+}
