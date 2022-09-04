@@ -1,10 +1,18 @@
-import React from "react";
-import { signup } from "../../../services/Queries";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { ContextAuth } from "../../../memory/Auth";
+import { signup } from "../../../services/Auth";
 import Credentials from "../../share/Credentials";
 
 function Signup() {
-  const dispatch = async (form) => {
 
+  const navigate = useNavigate();
+
+  const [auth, dispatchAuth] = useContext(ContextAuth);
+  const dispatch = async (form) => {
+    const token = await signup(form);
+    dispatchAuth({ type: 'set', token });
+    navigate('/create');
   };
 
   return <Credentials

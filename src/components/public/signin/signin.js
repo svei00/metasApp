@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ContextAuth } from "../../../memory/Auth";
-import { signin } from "../../../services/Queries";
+import { signin } from "../../../services/Auth";
 import Credentials from "../../share/Credentials";
 
 function Signin() {
@@ -10,7 +10,8 @@ function Signin() {
 
   const[auth, dispatchAuth] = useContext(ContextAuth);
   const dispatch = async (form) => {
-    dispatchAuth({ type: 'set', token: 'token' });
+    const token = await signin(form);
+    dispatchAuth({ type: 'set', token });
     navigate('/list');
   }
 
