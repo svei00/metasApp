@@ -1,3 +1,9 @@
+.page {
+  /* height: calc(100vh - theme('height.sc')); // Another way to do this with pure CSS be careful to put before the @apply*/
+  @apply
+  h-[calc(100vh-theme('height.sc'))]
+  flex;    
+}
 
 .main {
   @apply

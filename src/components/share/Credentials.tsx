@@ -45,6 +45,7 @@ function Credentials({ dispatch, title, button }: CredentialsProps ) {
           <input
             className="input"
             placeholder="Type your Password here."
+            type="password"
             value={pwd}
             onChange={(e) => onChange(e, 'pwd')}
           />

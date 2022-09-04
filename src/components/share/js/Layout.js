@@ -8,12 +8,13 @@ function Layout( {exclusive} ) {              // Change private for exclusive be
   return (
     <>
       <Header></Header> 
-      <main className={styles.main}>
-        {exclusive && <Aside />}
-        <section className={styles.section}>
-          <Outlet></Outlet>
-        </section>
-      </main>    
+      <div className={styles.page}>
+          {exclusive && <Aside />}
+          <section className={styles.section}>
+            <Outlet></Outlet>
+          </section>
+        <main className={styles.main}></main>
+      </div>    
       <Footer></Footer>
     </>
   );
